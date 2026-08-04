@@ -1,4 +1,5 @@
 from agenda import Agenda
+from database.database import criar_banco
 
 
 def exibir_menu() -> None:
@@ -22,7 +23,10 @@ def listar_eventos(agenda: Agenda) -> None:
     agenda.listar()
 
 
-def main() -> None:
+def main():
+
+    criar_banco()
+
     agenda = Agenda()
 
     while True:

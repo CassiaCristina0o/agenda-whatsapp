@@ -1,0 +1,23 @@
+from sqlalchemy.orm import Session
+from evento import Evento
+from .models import EventoModel
+
+
+class EventoRepository:
+    """Responsável por acessar a tabela de eventos."""
+
+    def __init__(self, session: Session):
+        self.session = session
+
+    def salvar(self, evento: Evento) -> None:
+        evento_model = EventoModel(
+            titulo=evento.titulo,
+            data=evento.data,
+            hora=evento.hora,
+        )
+
+        self.session.add(evento_model)
+        self.session.commit()
+
+    def listar(self) -> list[EventoModel]:
+        return self.session.query(EventoModel).all()
