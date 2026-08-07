@@ -25,12 +25,21 @@ class Agenda:
 
         print("\n📅 Eventos\n")
 
-        for indice, evento in enumerate(eventos, start=1):
+        for evento in eventos:
             print(
-                f"{indice}. "
+                f"{evento.id}. "
+                f"{evento.titulo} - "
                 f"{evento.data} - "
-                f"{evento.hora} - "
-                f"{evento.titulo}"
+                f"{evento.hora}"
                 )
             
         print()
+
+    def excluir(self, evento_id: int) -> None:
+
+        sucesso = self.repository.excluir(evento_id)
+
+        if sucesso:
+            print("\n✅ Evento removido com sucesso.\n")
+        else:
+            print ("\n❌ Evento não encontrado.\n")

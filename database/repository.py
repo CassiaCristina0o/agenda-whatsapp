@@ -21,3 +21,19 @@ class EventoRepository:
 
     def listar(self) -> list[EventoModel]:
         return self.session.query(EventoModel).all()
+
+    def excluir (self, evento_id: int) -> bool:
+        evento = (
+            self.session.query(EventoModel)
+            .filter_by(id=evento_id)
+            .first()
+        )
+        if evento is None:
+            return False
+
+        self.session.delete(evento)
+        self.session.commit()
+
+        return True
+
+    
