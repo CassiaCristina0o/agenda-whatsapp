@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+
 from evento import Evento
 from .models import EventoModel
 
@@ -22,12 +23,13 @@ class EventoRepository:
     def listar(self) -> list[EventoModel]:
         return self.session.query(EventoModel).all()
 
-    def excluir (self, evento_id: int) -> bool:
+    def excluir(self, evento_id: int) -> bool:
         evento = (
             self.session.query(EventoModel)
             .filter_by(id=evento_id)
             .first()
         )
+
         if evento is None:
             return False
 
@@ -36,4 +38,27 @@ class EventoRepository:
 
         return True
 
-    
+    def atualizar(
+        self,
+        evento_id: int,
+        titulo: str,
+        data: str,
+        hora: str
+    ) -> bool:
+
+        evento = (
+            self.session.query(EventoModel)
+            .filter_by(id=evento_id)
+            .first()
+        )
+
+        if evento is None:
+            return False
+
+        evento.titulo = titulo
+        evento.data = data
+        evento.hora = hora
+
+        self.session.commit()
+
+        return True

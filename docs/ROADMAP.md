@@ -10,7 +10,7 @@ Persistência com SQLite.
 CRUD completo.
 
 ## Sprint 4
-Scheduler e lembretes.
+Implementação da API.
 
 ## Sprint 5
 Integração WhatsApp.
