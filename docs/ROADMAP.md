@@ -13,4 +13,12 @@ CRUD completo.
 Implementação da API.
 
 ## Sprint 5
-Integração WhatsApp.
+Integração WhatsApp e lembretes automáticos.
+
+## Sprint 6
+Agenda no chat privado, com lista separada por pessoa.
+
+## Próximos passos
+
+Isolar a mensageria atrás de uma interface comum, permitindo outros canais
+(Telegram, WhatsApp Cloud API) sem alterar o núcleo da agenda.

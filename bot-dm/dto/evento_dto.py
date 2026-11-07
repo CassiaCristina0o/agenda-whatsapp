@@ -1,3 +1,5 @@
+"""Dados de entrada para cadastrar um evento."""
+
 from dataclasses import dataclass
 
 @dataclass

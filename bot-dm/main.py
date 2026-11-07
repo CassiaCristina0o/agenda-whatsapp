@@ -1,3 +1,5 @@
+"""Menu de terminal da agenda."""
+
 from database.database import criar_banco, SessionLocal
 from database.repository import EventoRepository
 from dto.evento_dto import EventoDTO
@@ -5,7 +7,7 @@ from services.agenda_services import AgendaService
 
 
 def exibir_menu() -> None:
-    print("=== AI Agenda ===")
+    print("=== Agenda ===")
     print("1 - Novo evento")
     print("2 - Listar eventos")
     print("3 - Excluir evento")
@@ -50,21 +52,22 @@ def listar_eventos(service: AgendaService) -> None:
 def excluir_evento(service: AgendaService) -> None:
     try:
         evento_id = int (input("ID do Evento: "))
-        service.excluir(evento_id)
-        print("\n✅ Evento excluído.\n")
+
+        if service.excluir(evento_id):
+            print("\n✅ Evento excluído.\n")
+        else:
+            print("\n❌ Evento não encontrado.\n")
 
     except ValueError:
         print("\n informe um valor válido.\n")
 
 
 def main():
-
     criar_banco()
 
     session = SessionLocal()
     repository = EventoRepository(session)
     service = AgendaService(repository)
-
 
     while True:
         exibir_menu()
